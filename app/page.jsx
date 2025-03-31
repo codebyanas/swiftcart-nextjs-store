@@ -1,10 +1,9 @@
-import React from 'react'
-import Navbar from '@/components/Navbar'
+import Skeleton from '@/components/Skeleton'
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Skeleton />
     </>
   )
 }
