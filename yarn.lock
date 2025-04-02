@@ -382,6 +382,11 @@
     "@eslint/core" "^0.12.0"
     levn "^0.4.1"
 
+"@fontsource/public-sans@^5.2.5":
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/public-sans/-/public-sans-5.2.5.tgz#bcbbfed4b1ceca80652aa3adedbb46bc8e1b38fb"
+  integrity sha512-WSRBuKX8dwHxc35s/Q1arB7vkGL2A9YHB93gRP9OTu/nYgat0CBHfsAOUSDehBnREHa0rYZvWDDS08w5qPoWvg==
+
 "@fontsource/roboto@^5.2.5":
   version "5.2.5"
   resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.2.5.tgz#b2d869075277e2cba31694951a2d355a8965d763"
