@@ -1,9 +1,11 @@
-import Skeleton from '@/components/Skeleton'
+import Banner from '@/components/Banner'
 
 export default function Home() {
   return (
     <>
-      {/* <Skeleton /> */}
+      <div >
+        <Banner />
+      </div>
     </>
   )
 }

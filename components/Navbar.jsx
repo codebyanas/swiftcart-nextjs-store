@@ -17,8 +17,6 @@ import ColorModeIconDropdown from '@/theme/ColorModeIconDropdown';
 import Image from 'next/image'
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  
-
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -54,7 +52,7 @@ export default function Navbar() {
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
-          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0}}>
+          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Image
               src="/store/swiftcart-name.png"
               width={140}
@@ -71,22 +69,16 @@ export default function Navbar() {
               }}
             >
               <Button variant="text" size="md" sx={{ color: '#616161' }}>
-                Features
+                Home
               </Button>
               <Button variant="text" size="md" sx={{ color: '#616161' }}>
-                Testimonials
+                Collection
               </Button>
               <Button variant="text" size="md" sx={{ color: '#616161' }}>
-                Highlights
+                About
               </Button>
               <Button variant="text" size="md" sx={{ color: '#616161' }}>
-                Pricing
-              </Button>
-              <Button variant="text" size="md" sx={{ minWidth: 0, color: '#616161' }}>
-                FAQ
-              </Button>
-              <Button variant="text" size="md" sx={{ minWidth: 0, color: '#616161' }}>
-                Blog
+                Contact
               </Button>
             </Box>
           </Box>
@@ -97,16 +89,24 @@ export default function Navbar() {
               alignItems: 'center',
             }}
           >
-            <Button color="primary" variant="text" size="small">
+            <Button variant="text" size="medium" sx={{background: "#D23F57", color: "white"}}>
               Sign in
             </Button>
-            <Button color="primary" variant="contained" size="small">
+            <Button
+              color="primary"
+              variant="contained"
+              size="medium"
+              sx={{
+                marginRight: '10px',
+                background: "#D23F57", 
+                color: "white"
+              }}>
               Sign up
             </Button>
-            <ColorModeIconDropdown />
+            {/* <ColorModeIconDropdown /> */}
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
-            <ColorModeIconDropdown size="medium" />
+            {/* <ColorModeIconDropdown size="medium" /> */}
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
@@ -140,7 +140,11 @@ export default function Navbar() {
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    fullWidth
+                  >
                     Sign up
                   </Button>
                 </MenuItem>

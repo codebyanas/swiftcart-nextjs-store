@@ -4,6 +4,7 @@ import React from "react";
 import { Box, Container, Grid, Typography, IconButton, TextField, Button, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import Image from 'next/image'
 
 const StyledFooter = styled(Box)({
   background: "linear-gradient(45deg, #222935 30%, #222935 90%)",
@@ -51,9 +52,13 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={3} lg={3}>
-            <Typography variant="h6" gutterBottom fontWeight="regular" color="common.white">
-              Company Info
-            </Typography>
+            <Image
+              src="/store/swiftcart-name.png"
+              width={140}
+              height={40}
+              alt="Company logo"
+              style={{ marginLeft: '-6px' }}
+            />
             <Typography variant="body2" paragraph>
               Innovation Tech Solutions
               <br />
