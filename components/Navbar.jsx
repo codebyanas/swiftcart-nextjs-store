@@ -1,163 +1,297 @@
 'use client'
 
-import React, { useState } from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Container from '@mui/material/Container';
-import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import Drawer from '@mui/material/Drawer';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import ColorModeIconDropdown from '@/theme/ColorModeIconDropdown';
-import Image from 'next/image'
+import React, { useState, useCallback } from "react";
+import { AppBar, Toolbar, Typography, IconButton, Badge, InputBase, Menu, MenuItem, Box, useMediaQuery, Drawer, List, ListItem, ListItemIcon, ListItemText, Container, Avatar, Switch, Select, FormControl, InputLabel, Slide } from "@mui/material";
+import { styled, alpha } from "@mui/material/styles";
+import { FiSearch, FiShoppingCart, FiUser, FiMenu, FiBell, FiSettings, FiLogOut, FiPackage, FiX } from "react-icons/fi";
+import debounce from "lodash/debounce";
 
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  flexShrink: 0,
-  borderRadius: `calc(${theme.shape.borderRadius}px + 8px)`,
-  backdropFilter: 'blur(24px)',
-  border: '1px solid',
-  borderColor: (theme.vars || theme).palette.divider,
-  backgroundColor: theme.vars
-    ? `rgba(${theme.vars.palette.background.defaultChannel} / 0.4)`
-    : alpha(theme.palette.background.default, 0.4),
-  boxShadow: (theme.vars || theme).shadows[1],
-  padding: '2px 4px',
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  backgroundColor: "#ffffff",
+  boxShadow: "0 2px 4px rgba(0,0,0,0.08)"
 }));
 
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
+const SearchWrapper = styled(Box)(({ theme }) => ({
+  position: "relative",
+  borderRadius: "24px",
+  backgroundColor: "#f5f5f5",
+  marginRight: "16px",
+  marginLeft: "16px",
+  width: "100%",
+  maxWidth: "600px",
+  [theme.breakpoints.down("sm")]: {
+    marginLeft: "0",
+    marginRight: "0",
+    backgroundColor: "transparent",
+    width: "auto",
+    flexGrow: 1
+  }
+}));
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
+const MobileSearchContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+  position: "relative"
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "#000000",
+  width: "100%",
+  padding: "8px 16px 8px 48px",
+  '& .MuiInputBase-input': {
+    color: '#000000'
+  }
+}));
+
+const MobileInputBase = styled(InputBase)(({ theme }) => ({
+  color: "#000000",
+  width: "100%",
+  padding: "8px 16px 8px 16px",
+  backgroundColor: "#f5f5f5",
+  borderRadius: "24px",
+  '& .MuiInputBase-input': {
+    color: '#000000'
+  }
+}));
+
+const SearchIconWrapper = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  left: "16px",
+  top: "50%",
+  transform: "translateY(-50%)",
+  color: "#666666"
+}));
+
+const SearchButton = styled(IconButton)(({ theme }) => ({
+  backgroundColor: "#D23F57",
+  color: "#ffffff",
+  marginLeft: "8px",
+  '&:hover': {
+    backgroundColor: "#b2364a"
+  }
+}));
+
+const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
+  const [language, setLanguage] = useState("en");
+  const [cartCount] = useState(5);
+  const [notifications] = useState(3);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const isMobile = useMediaQuery((theme) => 
+    theme ? theme.breakpoints.down("sm") : '@media (max-width:600px)'
+  );
+
+  const handleSearch = useCallback(
+    debounce((searchTerm) => {
+      console.log("Searching for:", searchTerm);
+    }, 300),
+    []
+  );
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  return (
-    <AppBar
-      position="fixed"
-      enableColorOnDark
-      sx={{
-        boxShadow: 0,
-        bgcolor: 'transparent',
-        backgroundImage: 'none',
-        mt: 'calc(var(--template-frame-height, 0px) + 28px)',
-      }}
-    >
-      <Container maxWidth="lg">
-        <StyledToolbar variant="dense" disableGutters>
-          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
-            <Image
-              src="/store/swiftcart-name.png"
-              width={140}
-              height={40}
-              alt="Company logo"
-              style={{ marginLeft: '10px' }} // Keeps the image aligned to the left
-            />
-            <Box
-              sx={{
-                display: { xs: 'none', md: 'flex' },
-                justifyContent: 'center', // Centers the buttons horizontally
-                alignItems: 'center',
-                flex: 1, // Ensures this Box takes up available space
-              }}
-            >
-              <Button variant="text" size="md" sx={{ color: '#616161' }}>
-                Home
-              </Button>
-              <Button variant="text" size="md" sx={{ color: '#616161' }}>
-                Collection
-              </Button>
-              <Button variant="text" size="md" sx={{ color: '#616161' }}>
-                About
-              </Button>
-              <Button variant="text" size="md" sx={{ color: '#616161' }}>
-                Contact
-              </Button>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              display: { xs: 'none', md: 'flex' },
-              gap: 1,
-              alignItems: 'center',
-            }}
-          >
-            <Button variant="text" size="medium" sx={{background: "#D23F57", color: "white"}}>
-              Sign in
-            </Button>
-            <Button
-              color="primary"
-              variant="contained"
-              size="medium"
-              sx={{
-                marginRight: '10px',
-                background: "#D23F57", 
-                color: "white"
-              }}>
-              Sign up
-            </Button>
-            {/* <ColorModeIconDropdown /> */}
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
-            {/* <ColorModeIconDropdown size="medium" /> */}
-            <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
-              <MenuIcon />
-            </IconButton>
-            <Drawer
-              anchor="top"
-              open={open}
-              onClose={toggleDrawer(false)}
-              PaperProps={{
-                sx: {
-                  top: 'var(--template-frame-height, 0px)',
-                },
-              }}
-            >
-              <Box sx={{ p: 2, backgroundColor: 'background.default' }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  <IconButton onClick={toggleDrawer(false)}>
-                    <CloseRoundedIcon />
-                  </IconButton>
-                </Box>
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
-                <Divider sx={{ my: 3 }} />
-                <MenuItem>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    fullWidth
-                  >
-                    Sign up
-                  </Button>
-                </MenuItem>
-                <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth>
-                    Sign in
-                  </Button>
-                </MenuItem>
-              </Box>
-            </Drawer>
-          </Box>
-        </StyledToolbar>
-      </Container>
-    </AppBar>
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const toggleMobileSearch = () => {
+    setShowMobileSearch(!showMobileSearch);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    if (!isMobile) {
+      handleSearch(e.target.value);
+    }
+  };
+
+  const handleMobileSearch = () => {
+    if (searchTerm) {
+      handleSearch(searchTerm);
+    }
+    setShowMobileSearch(false);
+  };
+
+  const handleCloseMobileSearch = () => {
+    setShowMobileSearch(false);
+    setSearchTerm("");
+  };
+
+  const drawerContent = (
+    <List>
+      <ListItem button>
+        <ListItemIcon>
+          <FiUser color="#000000"/>
+        </ListItemIcon>
+        <ListItemText primary="My Account" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <FiPackage color="#000000"/>
+        </ListItemIcon>
+        <ListItemText primary="Orders" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <FiSettings color="#000000"/>
+        </ListItemIcon>
+        <ListItemText primary="Settings" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <FiLogOut color="#000000"/>
+        </ListItemIcon>
+        <ListItemText primary="Logout" />
+      </ListItem>
+    </List>
   );
-}
+
+  return (
+    <StyledAppBar position="sticky">
+      <Container maxWidth="xl">
+        <Toolbar>
+          {isMobile && !showMobileSearch && (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ color: "#000000", mr: 1 }}
+            >
+              <FiMenu />
+            </IconButton>
+          )}
+
+          {(!isMobile || !showMobileSearch) && (
+            <Avatar
+              src="https://images.unsplash.com/photo-1572177191856-3cde618dee1f"
+              alt="Company Logo"
+              sx={{
+                width: isMobile ? 40 : 48,
+                height: isMobile ? 40 : 48,
+                cursor: "pointer",
+                mr: isMobile ? 1 : 2
+              }}
+            />
+          )}
+
+          {isMobile ? (
+            showMobileSearch ? (
+              <MobileSearchContainer>
+                <IconButton
+                  onClick={handleCloseMobileSearch}
+                  sx={{ color: "#000000", mr: 1 }}
+                >
+                  <FiX />
+                </IconButton>
+                <MobileInputBase
+                  placeholder="Search products..."
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  inputProps={{ "aria-label": "search" }}
+                  autoFocus
+                />
+                <SearchButton onClick={handleMobileSearch}>
+                  <FiSearch />
+                </SearchButton>
+              </MobileSearchContainer>
+            ) : (
+              <>
+                <Box sx={{ flexGrow: 1 }} />
+                <IconButton 
+                  aria-label="search" 
+                  onClick={toggleMobileSearch}
+                  sx={{ color: "#000000" }}
+                >
+                  <FiSearch />
+                </IconButton>
+              </>
+            )
+          ) : (
+            <SearchWrapper>
+              <SearchIconWrapper>
+                <FiSearch />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                inputProps={{ "aria-label": "search" }}
+              />
+            </SearchWrapper>
+          )}
+
+          {(!isMobile || !showMobileSearch) && (
+            <Slide in={!showMobileSearch} direction="left" mountOnEnter unmountOnExit>
+              <Box sx={{ display: "flex", alignItems: "center", ml: "auto" }}>
+                {!isMobile && (
+                  <>
+                  </>
+                )}
+
+                <IconButton 
+                  aria-label="notifications"
+                  sx={{ color: "#000000" }}
+                >
+                  <Badge badgeContent={notifications} color="error">
+                    <FiBell />
+                  </Badge>
+                </IconButton>
+
+                <IconButton 
+                  aria-label="cart"
+                  sx={{ color: "#000000" }}
+                >
+                  <Badge badgeContent={cartCount} color="error">
+                    <FiShoppingCart />
+                  </Badge>
+                </IconButton>
+
+                <IconButton
+                  aria-label="profile"
+                  onClick={handleProfileMenuOpen}
+                  sx={{ color: "#000000" }}
+                >
+                  <FiUser />
+                </IconButton>
+              </Box>
+            </Slide>
+          )}
+
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Orders</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+          </Menu>
+
+          <Drawer
+            variant="temporary"
+            anchor="left"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{ keepMounted: true }}
+          >
+            {drawerContent}
+          </Drawer>
+        </Toolbar>
+      </Container>
+    </StyledAppBar>
+  );
+};
+
+export default Navbar;
