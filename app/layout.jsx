@@ -1,8 +1,18 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import '@fontsource/roboto/500.css';
+// import '@fontsource/roboto/500.css';
+import { Public_Sans } from "next/font/google";
 import "./globals.css";
+
+
+// import ThemeRegistry from "@/components/ThemeRegistry"; // Import ThemeRegistry
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+const publicSans = Public_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"], // Add any weights you use
+  variable: "--font-public-sans",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,14 +31,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html>
       <head>
         <link rel="icon" href="/store/swiftcart.png" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Navbar />
-        {children}
-        {/* <Footer /> */}
+      <body className={publicSans.variable}>
+        {/* <ThemeRegistry> */}
+          <Navbar />
+          {children}
+          {/* <Footer /> */}
+        {/* </ThemeRegistry> */}
       </body>
     </html>
   );

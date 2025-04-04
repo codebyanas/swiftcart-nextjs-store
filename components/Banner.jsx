@@ -48,7 +48,7 @@ export default function Banner() {
                     <Typography variant="body1" sx={{ mt: 3, color: "text.secondary" }}>
                         Explore the latest trends with exclusive deals. Shop now and save big! Explore the latest trends with exclusive deals. Shop now and save big!
                     </Typography>
-                    <Button 
+                    <Button
                         variant="contained"
                         size="large"
                         sx={{
@@ -73,7 +73,7 @@ export default function Banner() {
                     }}
                 >
                     <Image
-                        src="/images/hero.png"
+                        src="https://i.postimg.cc/m2WnCkgR/hero.png"
                         width={500}
                         height={600}
                         alt="Product Banner"
@@ -82,6 +82,7 @@ export default function Banner() {
                             height: "auto",
                             objectFit: "cover",
                         }}
+                        unoptimized={true}  // Important for external images
                     />
                 </Box>
             </Box>
