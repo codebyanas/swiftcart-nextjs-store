@@ -7,6 +7,7 @@ import "./globals.css";
 // import ThemeRegistry from "@/components/ThemeRegistry"; // Import ThemeRegistry
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SecondNavbar from "@/components/SecondNavbar";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
       <body className={publicSans.variable}>
         {/* <ThemeRegistry> */}
           <Navbar />
+          <SecondNavbar/>
           {children}
           {/* <Footer /> */}
         {/* </ThemeRegistry> */}

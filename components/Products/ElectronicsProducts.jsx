@@ -88,35 +88,11 @@ const DesktopCard = ({ post }) => (
   </Card>
 );
 
-export default function ProductCard() {
+export default function ElectronicsProducts() {
   const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          mb: 2,
-          ml: isMobile ? 0 : 0,
-        }}
-      >
-        <FlashOnIcon sx={{ color: '#f44336', fontSize: isMobile ? 24 : 26, mr: 0.5 }} />
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 600,
-            fontSize: isMobile ? '25px' : '25px',
-            lineHeight: 1.5,
-            color: '#2b3445',
-            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-            textAlign: isMobile ? 'left' : 'left',
-          }}
-        >
-          Flash Deals
-        </Typography>
-      </Box>
-
       <Grid container spacing={2} justifyContent="space-between">
         {posts.map((post) => (
           <Grid item xs={6} sm={6} md={3} lg={3} key={post.id}>
