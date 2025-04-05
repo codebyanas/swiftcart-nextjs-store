@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <head>
-        <link rel="icon" href="/store/swiftcart.png" />
+        {/* <link rel="icon" href="/store/swiftcart.png" /> */}
       </head>
       <body className={publicSans.variable}>
         {/* <ThemeRegistry> */}
