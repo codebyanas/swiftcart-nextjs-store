@@ -55,7 +55,7 @@ const MobileCard = ({ post }) => (
 
 // 🔹 Desktop Layout
 const DesktopCard = ({ post }) => (
-  <Card sx={{ width: 320, height: 370, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Card sx={{ width: 340, height: 370, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
     <CardMedia component="img" height="230" image={post.image} alt={post.title}
       sx={{
         backgroundColor: '#f5f5f5', // optional to make empty space look intentional
@@ -93,30 +93,6 @@ export default function FashionProducts() {
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          mb: 2,
-          ml: isMobile ? 0 : 0,
-        }}
-      >
-        <FlashOnIcon sx={{ color: '#f44336', fontSize: isMobile ? 24 : 26, mr: 0.5 }} />
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 600,
-            fontSize: isMobile ? '25px' : '25px',
-            lineHeight: 1.5,
-            color: '#2b3445',
-            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-            textAlign: isMobile ? 'left' : 'left',
-          }}
-        >
-          Flash Deals
-        </Typography>
-      </Box>
-
       <Grid container spacing={2} justifyContent="space-between">
         {posts.map((post) => (
           <Grid item xs={6} sm={6} md={3} lg={3} key={post.id}>

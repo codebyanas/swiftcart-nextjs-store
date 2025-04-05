@@ -55,7 +55,7 @@ const MobileCard = ({ post }) => (
 
 // 🔹 Desktop Layout
 const DesktopCard = ({ post }) => (
-  <Card sx={{ width: 320, height: 370, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Card sx={{ width: 340, height: 370, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
     <CardMedia component="img" height="230" image={post.image} alt={post.title}
       sx={{
         backgroundColor: '#f5f5f5', // optional to make empty space look intentional
