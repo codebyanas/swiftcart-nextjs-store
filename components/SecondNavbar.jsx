@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from "react";
+import Link from 'next/link'
 import {
     AppBar, Toolbar, Menu, MenuItem, Box,
     Container, Button, Typography, ListItemIcon
@@ -92,14 +93,14 @@ const SecondNavbar = () => {
     const handleCategoriesMenuClose = () => setCategoriesAnchorEl(null);
 
     const categoryItems = [
-        { label: "Fashion", icon: <CheckroomOutlinedIcon /> },
-        { label: "Electronics", icon: <DevicesOtherOutlinedIcon /> },
-        { label: "Bikes", icon: <PedalBikeOutlinedIcon /> },
-        { label: "Home and Garden", icon: <YardOutlinedIcon /> },
-        { label: "Gifts", icon: <CardGiftcardOutlinedIcon /> },
-        { label: "Health and Beauty", icon: <FavoriteBorderIcon /> },
-        { label: "Baby Toys", icon: <ChildCareOutlinedIcon /> },
-        { label: "Accessories", icon: <WatchOutlinedIcon /> }
+        { label: "Fashion", slug: "fashion", icon: <CheckroomOutlinedIcon /> },
+        { label: "Electronics", slug: "electronics", icon: <DevicesOtherOutlinedIcon /> },
+        { label: "Bikes", slug: "bikes", icon: <PedalBikeOutlinedIcon /> },
+        { label: "Home and Garden", slug: "home-garden", icon: <YardOutlinedIcon /> },
+        { label: "Gifts", slug: "gifts", icon: <CardGiftcardOutlinedIcon /> },
+        { label: "Health and Beauty", slug: "health-beauty", icon: <FavoriteBorderIcon /> },
+        { label: "Baby Toys", slug: "baby-toys", icon: <ChildCareOutlinedIcon /> },
+        { label: "Accessories", slug: "accessories", icon: <WatchOutlinedIcon /> }
     ];
 
     return (
@@ -132,21 +133,28 @@ const SecondNavbar = () => {
                             }}
                         >
                             {categoryItems.map((item) => (
-                                <MenuItem
-                                    key={item.label}
-                                    onClick={handleCategoriesMenuClose}
-                                    sx={{
-                                        color: '#2b3445',
-                                        fontWeight: 400,
-                                        fontFamily: '"Public Sans", sans-serif',
-                                        fontSize: '16px'
-                                    }}
+                                <Link
+                                    key={item.slug}
+                                    href={`/category/${item.slug}`}
+                                    passHref
+                                    style={{ textDecoration: 'none', color: 'inherit' }}
                                 >
-                                    <ListItemIcon sx={{ minWidth: 30 }}>
-                                        {item.icon}
-                                    </ListItemIcon>
-                                    {item.label}
-                                </MenuItem>
+                                    <MenuItem
+                                        key={item.label}
+                                        onClick={handleCategoriesMenuClose}
+                                        sx={{
+                                            color: '#2b3445',
+                                            fontWeight: 400,
+                                            fontFamily: '"Public Sans", sans-serif',
+                                            fontSize: '16px'
+                                        }}
+                                    >
+                                        <ListItemIcon sx={{ minWidth: 30 }}>
+                                            {item.icon}
+                                        </ListItemIcon>
+                                        {item.label}
+                                    </MenuItem>
+                                </Link>
                             ))}
                         </Menu>
                     </Menu>

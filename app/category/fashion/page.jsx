@@ -1,26 +1,21 @@
 'use client'
 
 import * as React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import CategoryIcon from '@mui/icons-material/Category';
 import { styled } from '@mui/material/styles';
-import ElectronicsProducts from '@/components/Products/ElectronicsProducts';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import SortIcon from '@mui/icons-material/Sort';
+import MenuItem from '@mui/material/MenuItem';
+import { FormControl, Select } from '@mui/material';
+import Slider from '@mui/material/Slider';
+import SellIcon from '@mui/icons-material/Sell';
 import FashionProducts from '@/components/Products/FashionProducts';
 
 const sidebarWidth = 240;
@@ -41,6 +36,17 @@ function EcommerceSidebar(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [selectedFilters, setSelectedFilters] = React.useState([]);
+    const [sortOption, setSortOption] = useState('relevance');
+    const [value, setValue] = useState([0, 100]); // Default value (full range from 0 to 100)
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+
+    const handleSortChange = (event) => {
+        setSortOption(event.target.value);
+    };
 
     const handleFilterChange = (filter) => {
         setSelectedFilters((prev) =>
@@ -137,11 +143,84 @@ function EcommerceSidebar(props) {
                 </FormGroup>
             </Box>
 
+            <Toolbar>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <SellIcon sx={{
+                        color: '#D23F57',
+                        fontSize: '20px',
+                        ml: -0.8,
+                        mr: 1.5 // margin-right for spacing
+                    }} />
+                    <Typography
+                        variant="h6"
+                        sx={{
+                            color: '#2b3445',
+                            fontWeight: 400,
+                            lineHeight: 1.5,
+                            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+                            fontSize: '18px',
+                            textAlign: 'left',
+                            marginLeft: '-8px'
+                        }}
+                    >
+                        Price Range
+                    </Typography>
+                </Box>
+            </Toolbar>
+
+            <FormGroup
+                sx={{
+                    display: { xs: 'none', sm: 'block' },
+                    position: 'fixed',
+                    left: 0,
+                    width: sidebarWidth,
+                }}
+            >
+                <Box sx={{ px: 2 }}>
+                    <Slider
+                        value={value}
+                        onChange={handleChange}
+                        valueLabelDisplay="auto"
+                        valueLabelFormat={(value) => `$${value}`}
+                        min={0}
+                        max={100}
+                        step={1}
+                        sx={{
+                            color: '#757575',
+                            '& .MuiSlider-rail': {
+                                backgroundColor: '#ef5350', // Light background color
+                            },
+                            '& .MuiSlider-track': {
+                                backgroundColor: '#D23F57', // Slider track color
+                                borderColor: '#D23F57',
+                                height: 0.1,  // Adjust the height of the thumb to reduce its size
+                            },
+                            '& .MuiSlider-thumb': {
+                                backgroundColor: '#D23F57',
+                                width: 14,   // Adjust the width of the thumb
+                                height: 14,  // Adjust the height of the thumb to reduce its size
+                                borderRadius: '50%',  // Keep it round
+                            },
+                            '& .MuiSlider-valueLabel': {
+                                fontWeight: 100, // This sets the font weight to medium
+                            },
+
+                            '& .MuiSlider-root': {
+                                '&:focus-visible': {
+                                    outline: 'none', // Remove outline completely
+                                },
+                            },
+                            '& .MuiSlider-mark': {
+                                display: 'none', // Optionally, hide marks if they are not needed
+                            },
+                        }}
+                    />
+                </Box>
+            </FormGroup>
+
+
         </div>
     );
-
-
-    const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
         <>
@@ -194,7 +273,139 @@ function EcommerceSidebar(props) {
                     }}
                 >
 
-                    <FashionProducts />
+                    {/* Sort by */}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'flex-end',  // Aligns to the right side
+                            mb: 2, // space below the sort row
+                            gap: 2,
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                fontWeight: 500,
+                                color: '#757575',
+                                fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+                                fontSize: '16px',
+                            }}
+                        >
+                            Sort by:
+                        </Typography>
+
+                        <FormControl
+                            sx={{
+                                minWidth: 180,
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: '8px',  // Add border radius here
+                                    '& fieldset': {
+                                        borderColor: '#bdbdbd',
+                                    },
+                                    '&:hover fieldset': {
+                                        borderColor: '#757575',
+                                    },
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: '#D23F57',
+                                    },
+                                },
+                            }}
+                            size="small"
+                        >
+                            <Select
+                                value={sortOption}
+                                onChange={handleSortChange}
+                                displayEmpty
+                            >
+                                <MenuItem
+                                    value="relevance"
+                                    sx={{
+                                        '&:hover': {
+                                            backgroundColor: '#ef5350',  // Change background color on hover
+                                            color: '#fff',  // Text color when hovered
+                                        }
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{
+                                            fontWeight: 500,
+                                            color: '#424242',
+                                            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+                                            fontSize: '16px',
+                                        }}
+                                    >
+                                        Relevance
+                                    </Typography>
+
+                                </MenuItem>
+                                <MenuItem
+                                    value="lowToHigh"
+                                    sx={{
+                                        '&:hover': {
+                                            backgroundColor: '#ef5350',  // Change background color on hover
+                                            color: '#fff',  // Text color when hovered
+                                        }
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{
+                                            fontWeight: 500,
+                                            color: '#424242',
+                                            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+                                            fontSize: '16px',
+                                        }}
+                                    >
+                                        Price low to high
+                                    </Typography>
+
+                                </MenuItem>
+                                <MenuItem
+                                    value="highToLow"
+                                    sx={{
+                                        '&:hover': {
+                                            backgroundColor: '#ef5350',  // Change background color on hover
+                                            color: '#fff',  // Text color when hovered
+                                        }
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{
+                                            fontWeight: 500,
+                                            color: '#424242',
+                                            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+                                            fontSize: '16px',
+                                        }}
+                                    >
+                                        Price high to low
+                                    </Typography>
+
+                                </MenuItem>
+                                <MenuItem
+                                    value="date"
+                                    sx={{
+                                        '&:hover': {
+                                            backgroundColor: '#ef5350',  // Change background color on hover
+                                            color: '#fff',  // Text color when hovered
+                                        }
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{
+                                            fontWeight: 500,
+                                            color: '#424242',
+                                            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+                                            fontSize: '16px',
+                                        }}
+                                    >
+                                        Date
+                                    </Typography>
+                                </MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+
+                    {/* Sidebar Toggle Button */}
+                    <FashionProducts/>
                 </Box>
             </Box>
         </>
