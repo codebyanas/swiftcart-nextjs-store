@@ -1,17 +1,14 @@
 import { Geist, Geist_Mono } from "next/font/google";
-// import '@fontsource/roboto/500.css';
 import { Public_Sans } from "next/font/google";
 import "./globals.css";
 
-
-// import ThemeRegistry from "@/components/ThemeRegistry"; // Import ThemeRegistry
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SecondNavbar from "@/components/SecondNavbar";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"], // Add any weights you use
+  weight: ["400", "500", "700"],
   variable: "--font-public-sans",
 });
 
@@ -36,13 +33,11 @@ export default function RootLayout({ children }) {
       <head>
         {/* <link rel="icon" href="/store/swiftcart.png" /> */}
       </head>
-      <body className={publicSans.variable}>
-        {/* <ThemeRegistry> */}
-          <Navbar />
-          <SecondNavbar/>
-          {children}
-          {/* <Footer /> */}
-        {/* </ThemeRegistry> */}
+      <body className={`${publicSans.variable} flex flex-col min-h-screen`}>
+        <Navbar />
+        <SecondNavbar />
+        <main className="flex-grow">{children}</main>
+        <Footer />
       </body>
     </html>
   );

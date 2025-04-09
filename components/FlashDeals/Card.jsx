@@ -145,13 +145,20 @@ export default function ProductCard() {
             color: '#2b3445',
             fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
             textAlign: isMobile ? 'left' : 'left',
+            mx: isMobile ? 1 : 1,
           }}
         >
           Flash Deals
         </Typography>
       </Box>
 
-      <Grid container spacing={2} justifyContent="space-between">
+      <Grid 
+      container justifyContent="space-between"
+      spacing={1}
+      sx={{
+        mx: isMobile ? 1 : 1, // Add margin-left and margin-right (16px mobile, 32px desktop)
+      }}
+       >
         {posts.map((post) => (
           <Grid item xs={6} sm={6} md={3} lg={3} key={post.id}>
             {isMobile ? <MobileCard post={post} /> : <DesktopCard post={post} />}
