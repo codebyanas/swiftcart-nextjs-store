@@ -155,13 +155,10 @@ export default function ProductCard() {
           mx: isMobile ? 1 : 1, // Add margin-left and margin-right (16px mobile, 32px desktop)
         }}
       >
-        {/* {posts.map((post) => (
-          <Grid item xs={6} sm={6} md={3} lg={3} key={post.id}>
-            {isMobile ? <MobileCard post={post} /> : <DesktopCard post={post} />}
-          </Grid>
-        ))} */}
         {posts.map((post) => (
-          <Grid item xs={6} sm={6} md={3} key={post.id}>
+          <Grid item xs={6} sm={6} md={3} key={post.id}
+            className="p-4 bg-white border rounded-lg shadow-md cursor-pointer"
+            onClick={() => router.push(`/product/${post.slug}`)}>
             {isMobile ? (
               <MobileCard post={post} onClick={() => handleCardClick(post.slug)} />
             ) : (
