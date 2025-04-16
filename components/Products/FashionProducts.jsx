@@ -8,14 +8,8 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
-// 🔸 Add ratings to post data (optional)
-const posts = [
-  { id: 1, subheader: "Clothes", title: "Shrimp and Chorizo Paella", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D", avatar: "R", rating: 4.5, price: 99 },
-  { id: 2, subheader: "Clothes", title: "Classic Margherita Pizza", image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hvZXN8ZW58MHx8MHx8fDA%3D", avatar: "M", rating: 4, price: 1000 },
-  { id: 3, subheader: "Clothes", title: "Grilled Salmon with Asparagus Grilled Salmon with Asparagus Grilled Salmon with Asparagus", image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D", avatar: "S", rating: 3.5, price: 700 },
-  { id: 4, subheader: "Shoes", title: "Stylish Ultra", image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dCUyMHNoaXJ0fGVufDB8fDB8fHww", avatar: "S", rating: 5, price: 400 },
-];
+import { useRouter } from 'next/navigation';
+import posts from '@/data/posts';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
@@ -122,13 +116,16 @@ const DesktopCard = ({ post }) => (
 );
 
 export default function FashionProducts() {
+  const router = useRouter();
   const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
     <>
       <Grid container spacing={2} justifyContent="space-between">
         {posts.map((post) => (
-          <Grid item xs={6} sm={6} md={3} lg={3} key={post.id}>
+          <Grid item xs={6} sm={6} md={3} lg={3} key={post.id}
+          onClick={() => router.push(`/product/${post.slug}`)}
+          >
             {isMobile ? <MobileCard post={post} /> : <DesktopCard post={post} />}
           </Grid>
         ))}
