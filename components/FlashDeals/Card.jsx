@@ -16,10 +16,26 @@ import Image from 'next/image';
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
   <Card sx={{ width: 160, height: 250, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-    <CardMedia component="img" height="130" image={post.image} alt={post.title}
+
+    {/* <CardMedia component="img" height="100" image={post.image} alt={post.title}
       sx={{
         backgroundColor: '#f5f5f5', // optional to make empty space look intentional
-      }} />
+      }} /> */}
+
+    <Image
+      src={post.image}
+      alt={post.title}
+      width={0}  // This will be overridden by the parent container
+      height={100}
+      style={{
+        width: '100%',
+        objectFit: 'cover',
+        backgroundColor: '#f5f5f5',
+      }}
+      sizes="100vw"
+    />
+
+
     <Box sx={{ px: 1, pt: 1 }}>
       <Typography
         sx={{
@@ -67,10 +83,24 @@ const MobileCard = ({ post }) => (
 // 🔹 Desktop Layout
 const DesktopCard = ({ post }) => (
   <Card sx={{ width: 320, height: 380, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-    <CardMedia component="img" height="230" image={post.image} alt={post.title}
+    {/* <CardMedia component="img" height="230" image={post.image} alt={post.title}
       sx={{
         backgroundColor: '#f5f5f5', // optional to make empty space look intentional
-      }} />
+      }} /> */}
+
+    <Image
+      src={post.image}
+      alt={post.title}
+      width={0}  // This will be overridden by the parent container
+      height={230}
+      sizes="100vw"
+      style={{
+        width: '100%',
+        objectFit: 'cover',
+        backgroundColor: '#f5f5f5',
+      }}
+    />
+
     <Box sx={{ px: 2, pt: 1 }}>
       <Typography
         sx={{

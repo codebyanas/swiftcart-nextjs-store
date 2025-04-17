@@ -12,6 +12,7 @@ import {
 } from 'react-icons/fi';
 import { IoClose } from "react-icons/io5";
 import debounce from 'lodash/debounce';
+import Image from 'next/image';
 
 // 🔹 Styles
 const StyledAppBar = styled(AppBar)({
@@ -96,7 +97,18 @@ const ProductItem = ({ product, onUpdateQty, onRemove }) => {
 
   return (
     <Box display="flex" alignItems="center" mb={2}>
-      <img src={product.image} alt={product.name} style={{ width: 70, height: 70, borderRadius: 8, objectFit: 'cover', marginRight: 12 }} />
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={70}
+        height={70}
+        sizes="100vw"
+        style={{
+          borderRadius: '8px',
+          objectFit: 'cover',
+          marginRight: '12px',
+        }}
+      />
       <Box flexGrow={1}>
         <Typography
           sx={{

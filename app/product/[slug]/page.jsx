@@ -16,6 +16,7 @@ import {
 import { Star, Favorite, ExpandMore } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CircularProgress from '@mui/material/CircularProgress';
+import Image from 'next/image';
 import posts from '@/data/posts'; // Example data source
 
 const SIZES = ['SM', 'M', 'L', 'XL'];
@@ -99,19 +100,18 @@ const ProductDetail = ({ params: { slug } }) => {
         <Grid container spacing={4} alignItems="center">
           {/* Top - Image */}
           <Grid item xs={12} md={6}>
-            <Box
-              component="img"
+            <Image
+              src={product.image}
               alt={`${product.title} product image`}
-              sx={{
-                width: { xs: '100%', md: '400px' },
-                height: { xs: 'auto', md: '400px' },
+              width={400}
+              height={400}
+              style={{
+                width: '100%',
+                height: 'auto',
+                borderRadius: '8px',
                 objectFit: 'cover',
                 objectPosition: 'center',
-                borderRadius: 1,
-                display: 'block',
-                margin: { xs: '0 auto', md: 0 },
               }}
-              src={product.image}
             />
           </Grid>
 
