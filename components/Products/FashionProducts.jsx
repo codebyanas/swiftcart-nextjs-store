@@ -13,7 +13,7 @@ import posts from '@/data/posts';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
-  <Card sx={{ width: 160, height: 250, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Card sx={{ width: 160, height: 250, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
     <CardMedia component="img" height="130" image={post.image} alt={post.title}
       sx={{
         backgroundColor: '#f5f5f5', // optional to make empty space look intentional
@@ -64,7 +64,7 @@ const MobileCard = ({ post }) => (
 
 // 🔹 Desktop Layout
 const DesktopCard = ({ post }) => (
-  <Card sx={{ width: 320, height: 380, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Card sx={{ width: 320, height: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
     <CardMedia component="img" height="230" image={post.image} alt={post.title}
       sx={{
         backgroundColor: '#f5f5f5', // optional to make empty space look intentional
@@ -121,7 +121,7 @@ export default function FashionProducts() {
 
   return (
     <>
-      <Grid container spacing={2} justifyContent="space-between">
+      <Grid container spacing={2} justifyContent="center">
         {posts.map((post) => (
           <Grid item xs={6} sm={6} md={3} lg={3} key={post.id}
           onClick={() => router.push(`/product/${post.slug}`)}

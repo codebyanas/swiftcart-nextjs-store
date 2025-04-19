@@ -2,60 +2,23 @@
 
 import React, { useState, useCallback } from 'react';
 import {
-  AppBar, Toolbar, IconButton, Badge, InputBase, Menu, MenuItem, Box,
+  AppBar, Toolbar, IconButton, Badge, Menu, MenuItem, Box,
   useMediaQuery, Drawer, Container, Avatar, Typography, Divider, Button
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {
-  FiSearch, FiShoppingCart, FiUser, FiBell, FiX, FiShoppingBag,
+  FiShoppingCart, FiUser, FiBell, FiX, FiShoppingBag,
   FiMinus, FiPlus, FiTrash
 } from 'react-icons/fi';
 import { IoClose } from "react-icons/io5";
 import debounce from 'lodash/debounce';
 import Image from 'next/image';
+import SearchBar from './SearchBar';
 
 // 🔹 Styles
 const StyledAppBar = styled(AppBar)({
   backgroundColor: '#ffffff',
   boxShadow: 'none',
-});
-
-const SearchWrapper = styled(Box)({
-  position: 'relative',
-  borderRadius: '24px',
-  backgroundColor: '#f5f5f5',
-  marginRight: '16px',
-  marginLeft: '16px',
-  width: '100%',
-  maxWidth: '600px',
-  display: 'flex',
-  alignItems: 'center',
-});
-
-const StyledInputBase = styled(InputBase)({
-  color: '#000000',
-  width: '100%',
-  padding: '8px 40px 8px 48px',
-  '& .MuiInputBase-input': {
-    color: '#000000',
-  },
-});
-
-const SearchIconWrapper = styled(Box)({
-  position: 'absolute',
-  left: '16px',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  color: '#666666',
-});
-
-const CloseIconWrapper = styled(IconButton)({
-  position: 'absolute',
-  right: '8px',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  color: '#666666',
-  padding: '4px',
 });
 
 const CartDrawer = styled(Drawer)(({ theme }) => ({
@@ -154,85 +117,38 @@ const ProductItem = ({ product, onUpdateQty, onRemove }) => {
 // 🔹 Unified Navbar
 const UnifiedNavbar = ({ searchTerm, handleSearchChange, cartCount, notifications, handleCartOpen, handleProfileMenuOpen }) => {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const [isSearchActive, setIsSearchActive] = useState(false);
-
-  const handleSearchClick = () => {
-    if (isMobile) {
-      setIsSearchActive(true);
-    }
-  };
-
-  const handleSearchClose = () => {
-    setIsSearchActive(false);
-    setSearchTerm(''); // Optional: Clear search term when closing
-  };
-
-  const handleSearchBlur = () => {
-    if (isMobile && !searchTerm) {
-      setIsSearchActive(false);
-    }
-  };
 
   return (
     <Box display="flex" alignItems="center" width="100%">
       <Avatar
         src="https://images.unsplash.com/photo-1572177191856-3cde618dee1f"
         alt="Logo"
-        sx={{ width: { xs: 40, md: 48 }, height: { xs: 40, md: 48 }, cursor: 'pointer', mr: 2, display: isMobile && isSearchActive ? 'none' : 'block' }}
+        sx={{ width: { xs: 40, md: 48 }, height: { xs: 40, md: 48 }, cursor: 'pointer', mr: 2 }}
       />
-      {isMobile && isSearchActive ? (
-        <SearchWrapper sx={{ flexGrow: 1 }}>
-          <SearchIconWrapper><FiSearch /></SearchIconWrapper>
-          <StyledInputBase 
-            placeholder="Search products..." 
-            value={searchTerm} 
-            onChange={handleSearchChange} 
-            onBlur={handleSearchBlur} 
-            autoFocus 
-          />
-          <CloseIconWrapper onClick={handleSearchClose}>
-            <FiX size={16} />
-          </CloseIconWrapper>
-        </SearchWrapper>
-      ) : (
-        <>
-          {!isMobile && (
-            <SearchWrapper sx={{ flexGrow: 1 }}>
-              <SearchIconWrapper><FiSearch /></SearchIconWrapper>
-              <StyledInputBase placeholder="Search products..." value={searchTerm} onChange={handleSearchChange} />
-            </SearchWrapper>
-          )}
-          <Box sx={{ 
-            ml: 'auto', 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: { xs: 1, md: 2 },
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            width: 'auto',
-            visibility: isMobile && isSearchActive ? 'hidden' : 'visible'
-          }}>
-            {isMobile && (
-              <IconButton sx={{ color: '#000000' }} onClick={handleSearchClick}>
-                <FiSearch />
-              </IconButton>
-            )}
-            <IconButton sx={{ color: '#000000' }}>
-              <Badge badgeContent={notifications} color="error">
-                <FiBell />
-              </Badge>
-            </IconButton>
-            <IconButton sx={{ color: '#000000' }} onClick={handleCartOpen}>
-              <Badge badgeContent={cartCount} color="error">
-                <FiShoppingCart />
-              </Badge>
-            </IconButton>
-            <IconButton onClick={handleProfileMenuOpen} sx={{ color: '#000000' }}>
-              <FiUser />
-            </IconButton>
-          </Box>
-        </>
-      )}
+      <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} sx={{ flexGrow: 1 }} />
+      <Box sx={{ 
+        ml: 'auto', 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: { xs: 1, md: 2 },
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        width: 'auto',
+      }}>
+        <IconButton sx={{ color: '#000000' }}>
+          <Badge badgeContent={notifications} color="error">
+            <FiBell />
+          </Badge>
+        </IconButton>
+        <IconButton sx={{ color: '#000000' }} onClick={handleCartOpen}>
+          <Badge badgeContent={cartCount} color="error">
+            <FiShoppingCart />
+          </Badge>
+        </IconButton>
+        <IconButton onClick={handleProfileMenuOpen} sx={{ color: '#000000' }}>
+          <FiUser />
+        </IconButton>
+      </Box>
     </Box>
   );
 };
@@ -276,8 +192,8 @@ const Navbar = () => {
 
   return (
     <StyledAppBar position="sticky">
-      <Container maxWidth="xl" sx={{ paddingX: 0 }}> {/* Remove or reduce padding */}
-      <Toolbar sx={{ paddingX: 2, justifyContent: 'space-between' }}>
+      <Container maxWidth="xl" sx={{ paddingX: 0 }}>
+        <Toolbar sx={{ paddingX: 2, justifyContent: 'space-between' }}>
           <UnifiedNavbar
             searchTerm={searchTerm}
             handleSearchChange={handleSearchChange}
@@ -286,7 +202,6 @@ const Navbar = () => {
             handleCartOpen={handleCartOpen}
             handleProfileMenuOpen={handleProfileMenuOpen}
           />
-
           <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
             <MenuItem>My Account</MenuItem>
             <MenuItem>Orders</MenuItem>
