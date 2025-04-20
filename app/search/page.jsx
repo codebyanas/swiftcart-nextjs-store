@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import { redirect } from 'next/navigation';
 import posts from '@/data/posts';
