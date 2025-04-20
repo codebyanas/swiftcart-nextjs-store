@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, InputBase, IconButton, useMediaQuery } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FiSearch, FiX } from 'react-icons/fi';
+import { useRouter } from 'next/navigation'; // Updated import
 
 // 🔹 Styles
 const SearchWrapper = styled(Box)({
@@ -43,8 +44,15 @@ const CloseIconWrapper = styled(IconButton)({
 });
 
 const SearchBar = ({ searchTerm, onSearchChange, sx }) => {
+  const router = useRouter();
   const isMobile = useMediaQuery('(max-width:600px)');
   const [isSearchActive, setIsSearchActive] = useState(false);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && searchTerm.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
+    }
+  };
 
   const handleSearchClick = () => {
     if (isMobile) {
@@ -54,7 +62,7 @@ const SearchBar = ({ searchTerm, onSearchChange, sx }) => {
 
   const handleSearchClose = () => {
     setIsSearchActive(false);
-    onSearchChange({ target: { value: '' } }); // Clear search term
+    onSearchChange?.({ target: { value: '' } });
   };
 
   const handleSearchBlur = () => {
@@ -80,6 +88,7 @@ const SearchBar = ({ searchTerm, onSearchChange, sx }) => {
         placeholder="Search products..."
         value={searchTerm}
         onChange={onSearchChange}
+        onKeyDown={handleKeyDown}
         onBlur={handleSearchBlur}
         autoFocus={isMobile}
       />
