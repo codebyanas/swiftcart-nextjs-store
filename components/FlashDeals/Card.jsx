@@ -183,6 +183,7 @@ export default function ProductCard() {
         spacing={1}
         sx={{
           mx: isMobile ? 1 : 1, // Add margin-left and margin-right (16px mobile, 32px desktop)
+          mb: 6
         }}
       >
         {posts.map((post) => (

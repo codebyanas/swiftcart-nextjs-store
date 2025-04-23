@@ -62,7 +62,7 @@ const EcommerceSidebar = () => {
   return (
     <>
       <CssBaseline />
-      <Box sx={{ display: 'flex', flexDirection: 'row', px: 2, pt: 2 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', px: 2, pt: 2, mb: 6}}>
         {/* Sidebar */}
         <SidebarContainer sx={{ display: { xs: 'none', md: 'block' }, width: {md: '280px'} }}>
           <Toolbar>
@@ -97,7 +97,8 @@ const EcommerceSidebar = () => {
             </FormGroup>
           </Box>
 
-          <Toolbar sx={{ mt: 3 }}>
+          {/* Price Range */}
+          {/* <Toolbar sx={{ mt: 3 }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <SellIcon sx={{ color: '#D23F57', fontSize: 20, mr: 1.5 }} />
               <Typography variant="h6" sx={{ fontWeight: 400, fontSize: 18 }}>
@@ -118,7 +119,7 @@ const EcommerceSidebar = () => {
                 color: '#D23F57',
               }}
             />
-          </Box>
+          </Box> */}
         </SidebarContainer>
 
         {/* Main Content */}
