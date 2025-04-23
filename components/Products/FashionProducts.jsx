@@ -115,22 +115,44 @@ const DesktopCard = ({ post }) => (
   </Card >
 );
 
-export default function FashionProducts() {
+export default function FashionProducts({ sortOption, selectedFilters }) {
   const router = useRouter();
   const isMobile = useMediaQuery('(max-width:600px)');
 
+  // Filter posts based on selectedFilters (subcategory)
+  const filteredPosts = selectedFilters.length
+    ? posts.filter(post => selectedFilters.includes(post.subcategory))
+    : posts;
+
   return (
     <>
-      <Grid container spacing={2} justifyContent="center">
-        {posts.map((post) => (
-          <Grid item xs={6} sm={6} md={3} lg={3} key={post.id}
-          onClick={() => router.push(`/product/${post.slug}`)}
-          >
-            {isMobile ? <MobileCard post={post} /> : <DesktopCard post={post} />}
-          </Grid>
-        ))}
-      </Grid>
+      {filteredPosts.length === 0 ? (
+        <Typography
+          variant="h6"
+          align="center"
+          sx={{ marginTop: 4, fontWeight: 'bold', color: 'gray' }}
+        >
+          No products found for the selected category.
+        </Typography>
+      ) : (
+        <Grid container spacing={2} justifyContent="center">
+          {filteredPosts.map((post) => (
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              md={3}
+              lg={3}
+              key={post.id}
+              onClick={() => router.push(`/product/${post.slug}`)}
+            >
+              {isMobile ? <MobileCard post={post} /> : <DesktopCard post={post} />}
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </>
   );
 }
+
 

@@ -37,19 +37,16 @@ const SidebarContainer = styled(Box)(({ theme }) => ({
 }));
 
 const EcommerceSidebar = () => {
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState('');
   const [sortOption, setSortOption] = useState('relevance');
   const [value, setValue] = useState([0, 100]);
 
-  const electronicsFilters = ['Laptops', 'Smartphones', 'Cameras', 'Headphones', 'Gaming Consoles'];
+  const subcategory = ['Laptops', 'Smartphones', 'Cameras', 'Headphones', 'Gaming Consoles'];
 
   const handleFilterChange = (filter) => {
-    setSelectedFilters((prev) =>
-      prev.includes(filter)
-        ? prev.filter((f) => f !== filter)
-        : [...prev, filter]
-    );
+    setSelectedFilter(prev => (prev === filter ? '' : filter));
   };
+  
 
   const handleSortChange = (event) => {
     setSortOption(event.target.value);
@@ -76,7 +73,7 @@ const EcommerceSidebar = () => {
 
           <Box sx={{ px: 2 }}>
             <FormGroup>
-              {electronicsFilters.map((filter) => (
+              {subcategory.map((filter) => (
                 <FormControlLabel
                   key={filter}
                   control={
@@ -87,7 +84,7 @@ const EcommerceSidebar = () => {
                           color: '#D23F57',
                         },
                       }}
-                      checked={selectedFilters.includes(filter)}
+                      checked={selectedFilter === filter}
                       onChange={() => handleFilterChange(filter)}
                     />
                   }
@@ -200,7 +197,7 @@ const EcommerceSidebar = () => {
             </FormControl>
           </Box>
 
-          <FashionProducts sortOption={sortOption} />
+          <FashionProducts sortOption={sortOption} selectedFilters={selectedFilter ? [selectedFilter] : []} />
         </Box>
       </Box>
     </>

@@ -9,6 +9,9 @@ const posts = [
       avatar: 'R',
       rating: 4.5,
       price: 99,
+      category: 'Electronics', // Clothes, Shoes, Electronics,
+      subcategory: 'Laptop', // Man,women,kids,
+      timeStamp: '2023-10-01T12:00:00Z',
     },
     {
       id: 2,
@@ -20,6 +23,9 @@ const posts = [
       avatar: 'M',
       rating: 4,
       price: 1000,
+      category: 'Electronics', // Clothes, Shoes, Electronics,
+      subcategory: 'Cameras', // Man,women,kids,
+      timeStamp: '2023-10-01T12:00:00Z',
     },
     {
       id: 3,
@@ -31,6 +37,9 @@ const posts = [
       avatar: 'S',
       rating: 3.5,
       price: 700,
+      category: 'Electronics', // Clothes, Shoes, Electronics,
+      subcategory: 'Cameras', // Man,women,kids,
+      timeStamp: '2023-10-01T12:00:00Z',
     },
     {
       id: 4,
@@ -42,6 +51,9 @@ const posts = [
       avatar: 'S',
       rating: 5,
       price: 400,
+      category: 'Electronics', // Clothes, Shoes, Electronics,
+      subcategory: 'Smartphones', // Man,women,kids,
+      timeStamp: '2023-10-01T12:00:00Z',
     },
   ];
   
