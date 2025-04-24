@@ -9,7 +9,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
-import posts from '@/data/posts';
+import posts from '@/data/topposts';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -80,74 +80,35 @@ const MobileCard = ({ post }) => (
   </Card>
 );
 
-// 🔹 Desktop Layout
 const DesktopCard = ({ post }) => (
-  <Card sx={{ width: 320, height: 380, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-    {/* <CardMedia component="img" height="230" image={post.image} alt={post.title}
+    <Card
       sx={{
-        backgroundColor: '#f5f5f5', // optional to make empty space look intentional
-      }} /> */}
-
-    <Image
-      src={post.image}
-      alt={post.title}
-      width={0}  // This will be overridden by the parent container
-      height={230}
-      sizes="100vw"
-      style={{
-        width: '100%',
-        objectFit: 'cover',
-        backgroundColor: '#f5f5f5',
+        width: 430,
+        height: 170,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
       }}
-    />
-
-    <Box sx={{ px: 2, pt: 1 }}>
-      <Typography
-        sx={{
-          fontWeight: 500,
-          fontSize: '14px',
-          color: 'rgb(75, 86, 107)',
-          fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-          lineHeight: 1.5,
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-          marginBottom: '4px'
+    >
+      <Image
+        src={post.image}
+        alt={post.title}
+        width={0} // This will be overridden by the parent container
+        height={145}
+        sizes="100vw"
+        style={{
+          width: 'calc(100% - 30px)', // Subtract 40px for horizontal margins (20px on each side)
+          margin: '0 auto',          // Center the image horizontally
+          objectFit: 'cover',
+          backgroundColor: '#f5f5f5',
+          borderRadius: '8px',  
         }}
-      >
-        {post.title}
-      </Typography>
-      <Rating size="small" value={post.rating} precision={0.5} readOnly />
-      <Typography
-        sx={{
-          fontWeight: 500,
-          fontSize: '14px',
-          fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-          lineHeight: 1.5,
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-          marginTop: '4px',
-          margin: '0px',
-          color: 'rgb(210, 63, 87)'
-        }}
-      >
-        ${post.price}
-      </Typography>
-    </Box>
-    <CardActions disableSpacing sx={{ px: 2, pt: 1 }}>
-      <IconButton aria-label="add to favorites"><FavoriteIcon /></IconButton>
-      <IconButton aria-label="share"><ShareIcon /></IconButton>
-      <IconButton sx={{ marginLeft: 'auto', color: '#D23F57' }} aria-label="add to cart">
-        <ShoppingCartIcon />
-      </IconButton>
-    </CardActions>
-  </Card >
-);
+      />
+    </Card>
+  );
+  
 
-export default function ProductCard() {
+export default function TopCategoriesCard() {
   const router = useRouter();
   const isMobile = useMediaQuery('(max-width:600px)');
 
@@ -174,7 +135,7 @@ export default function ProductCard() {
             mx: isMobile ? 1 : 1,
           }}
         >
-          Flash Deals
+          Top Gategories
         </Typography>
       </Box>
 

@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <head>
-        {/* <link rel="icon" href="/store/swiftcart.png" /> */}
+        <link rel="icon" href="https://i.postimg.cc/tgzFSv4L/2-removebg-preview.png" />
       </head>
       <body className={`${publicSans.variable} flex flex-col min-h-screen`}>
         <Navbar />

@@ -1,13 +1,15 @@
 'use client'
 
 import Banner from '@/components/Banner'
-import Card from '@/components/FlashDeals/Card'
+import ProductCard from '@/components/FlashDeals/Card'
+import TopCategoriesCard from '@/components/TopCategories/TopCategoriesProducts'
 
 export default function Home() {
   return (
     <>
       <Banner />
-      <Card />
+      <ProductCard />
+      <TopCategoriesCard/>
     </>
   )
 }

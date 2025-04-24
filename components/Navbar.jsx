@@ -11,6 +11,7 @@ import debounce from 'lodash/debounce';
 import SearchBar from '@/components/SearchBar';
 import Cart from '@/components/Cart';
 import UserMenu from '@/components/UserMenu';
+import Image from 'next/image';
 
 // 🔹 Styles
 const StyledAppBar = styled(AppBar)({
@@ -21,12 +22,17 @@ const StyledAppBar = styled(AppBar)({
 // 🔹 Components
 const MobileNavbar = ({ cartCount, handleCartOpen, handleProfileMenuOpen, searchTerm, handleSearchChange }) => (
   <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-    <Avatar src="/logo-mobile.png" alt="Logo" />
+    <Image
+      src="https://i.postimg.cc/QtTKL688/1-1.png"
+      alt="Logo"
+      width={135}
+      height={35}
+    />
     <Box display="flex" gap={0.5}>
-    <SearchBar 
-  searchTerm={searchTerm} 
-  onSearchChange={handleSearchChange}
-/>
+      <SearchBar
+        searchTerm={searchTerm}
+        onSearchChange={handleSearchChange}
+      />
 
       <IconButton onClick={handleCartOpen}>
         <Badge badgeContent={cartCount} color="error">
@@ -40,11 +46,16 @@ const MobileNavbar = ({ cartCount, handleCartOpen, handleProfileMenuOpen, search
 
 const DesktopNavbar = ({ cartCount, handleCartOpen, handleProfileMenuOpen, searchTerm, handleSearchChange }) => (
   <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
-    <Avatar src="/logo-desktop.png" alt="Logo" />
-    <SearchBar sx={{ flexGrow: 1, marginRight: 2 }} 
-searchTerm={searchTerm} 
-onSearchChange={handleSearchChange}
-/>
+    <Image
+      src="https://i.postimg.cc/QtTKL688/1-1.png"
+      alt="Logo"
+      width={143}
+      height={40}
+    />
+    <SearchBar sx={{ flexGrow: 1, marginRight: 2 }}
+      searchTerm={searchTerm}
+      onSearchChange={handleSearchChange}
+    />
     <Box display="flex" gap={0.5}>
       <IconButton onClick={handleCartOpen}>
         <Badge badgeContent={cartCount} color="error">

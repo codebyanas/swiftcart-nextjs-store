@@ -19,10 +19,8 @@ import FashionProducts from '@/components/Products/FashionProducts';
 
 // Define sort options
 const sortOptions = [
-  { value: 'relevance', label: 'Relevance' },
   { value: 'lowToHigh', label: 'Price low to high' },
   { value: 'highToLow', label: 'Price high to low' },
-  { value: 'date', label: 'Date' },
 ];
 
 const sidebarWidth = 260;
@@ -38,7 +36,7 @@ const SidebarContainer = styled(Box)(({ theme }) => ({
 
 const EcommerceSidebar = () => {
   const [selectedFilter, setSelectedFilter] = useState('');
-  const [sortOption, setSortOption] = useState('relevance');
+  const [sortOption, setSortOption] = useState('lowToHigh');
   const [value, setValue] = useState([0, 100]);
 
   const subcategory = ['Laptops', 'Smartphones', 'Cameras', 'Headphones', 'Gaming Consoles'];

@@ -124,9 +124,17 @@ export default function FashionProducts({ sortOption, selectedFilters }) {
     ? posts.filter(post => selectedFilters.includes(post.subcategory))
     : posts;
 
+  // 🔹 Sort posts based on selected sortOption
+  const sortedPosts = [...filteredPosts].sort((a, b) => {
+    if (sortOption === 'highToLow') {
+      return b.price - a.price;
+    }
+    return a.price - b.price; // Default and 'lowToHigh'
+  });
+
   return (
     <>
-      {filteredPosts.length === 0 ? (
+      {sortedPosts.length === 0 ? (
         <Typography
           variant="h6"
           align="center"
@@ -136,7 +144,7 @@ export default function FashionProducts({ sortOption, selectedFilters }) {
         </Typography>
       ) : (
         <Grid container spacing={2} justifyContent="center">
-          {filteredPosts.map((post) => (
+          {sortedPosts.map((post) => (
             <Grid
               item
               xs={6}
@@ -154,5 +162,6 @@ export default function FashionProducts({ sortOption, selectedFilters }) {
     </>
   );
 }
+
 
 
