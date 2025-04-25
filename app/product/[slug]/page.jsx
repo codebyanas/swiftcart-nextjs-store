@@ -17,7 +17,7 @@ import { Star, Favorite, ExpandMore } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CircularProgress from '@mui/material/CircularProgress';
 import Image from 'next/image';
-import posts from '@/data/posts'; // Example data source
+import posts from '@/data/flashdealsposts'; // Example data source
 
 const SIZES = ['SM', 'M', 'L', 'XL'];
 

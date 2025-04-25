@@ -11,7 +11,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useRouter } from 'next/navigation';
 import { redirect } from 'next/navigation';
 import ManageSearchOutlinedIcon from '@mui/icons-material/ManageSearchOutlined';
-import posts from '@/data/posts';
+import posts from '@/data/flashdealsposts';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (

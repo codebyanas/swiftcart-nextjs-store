@@ -9,7 +9,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useRouter } from 'next/navigation';
-import posts from '@/data/posts';
+import posts from '@/data/flashdealsposts';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (

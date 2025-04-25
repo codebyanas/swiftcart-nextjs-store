@@ -52,7 +52,7 @@ const DesktopNavbar = ({ cartCount, handleCartOpen, handleProfileMenuOpen, searc
       width={143}
       height={40}
     />
-    <SearchBar sx={{ flexGrow: 1, marginRight: 2 }}
+    <SearchBar sx={{ flexGrow: 1, marginRight: 2, justifyContent: 'center' }}
       searchTerm={searchTerm}
       onSearchChange={handleSearchChange}
     />

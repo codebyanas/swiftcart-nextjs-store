@@ -77,75 +77,74 @@ const MobileCard = ({ post }) => (
 
 // 🔹 Desktop Layout
 const DesktopCard = ({ post }) => (
-  <Card sx={{ width: 326, height: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-    {/* <CardMedia component="img" height="230" image={post.image} alt={post.title}
+    <Card
       sx={{
-        backgroundColor: '#f5f5f5', // optional to make empty space look intentional
-      }} /> */}
-
-    <Image
-      src={post.image}
-      alt={post.title}
-      width={0} // This will be overridden by the parent container
-      height={230}
-      sizes="100vw"
-      style={{
-        width: 'calc(100% - 30px)', // Subtract 40px for horizontal margins (20px on each side)
-        margin: '0 auto', 
-        marginTop: '16px',
-        objectFit: 'cover',
-        backgroundColor: '#f5f5f5',
-        borderRadius: '8px',
+        width: 326,
+        height: 270,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
       }}
-    />
-
-    <Box sx={{ px: 2, pt: 2, }}>
-      <Typography
+    >
+      <Image
+        src={post.image}
+        alt={post.title}
+        width={0} // This will be overridden by the parent container
+        height={80}
+        sizes="100vw"
+        style={{
+          width: 'calc(100% - 240px)', // Subtract 40px for horizontal margins (20px on each side)
+          margin: '0 auto',
+          marginTop: '40px',
+          objectFit: 'cover',
+          backgroundColor: '#f5f5f5',
+          borderRadius: '8px',
+        }}
+      />
+  
+      <Box
         sx={{
-          fontWeight: 500,
-          fontSize: '14px',
-          color: 'rgb(75, 86, 107)',
-          fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-          lineHeight: 1.5,
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-          marginBottom: '4px'
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          px: 2,
+          pt: 2,
+          textAlign: 'center',
+          flexGrow: 1, // Ensures the box grows to occupy available space
         }}
       >
-        {post.title}
-      </Typography>
-      <Rating size="small" value={post.rating} precision={0.5} readOnly />
-      <Typography
-        sx={{
-          fontWeight: 500,
-          fontSize: '14px',
-          fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-          lineHeight: 1.5,
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-          marginTop: '4px',
-          margin: '0px',
-          color: 'rgb(210, 63, 87)'
-        }}
-      >
-        ${post.price}
-      </Typography>
-    </Box>
-    <CardActions disableSpacing sx={{ px: 2, pt: 1 }}>
-      <IconButton aria-label="add to favorites"><FavoriteIcon /></IconButton>
-      <IconButton aria-label="share"><ShareIcon /></IconButton>
-      <IconButton sx={{ marginLeft: 'auto', color: '#D23F57' }} aria-label="add to cart">
-        <ShoppingCartIcon />
-      </IconButton>
-    </CardActions>
-  </Card >
-);
+        <Typography
+          sx={{
+            fontWeight: 500,
+            fontSize: '14px',
+            color: 'rgb(67, 77, 95)',
+            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+            lineHeight: 1.5,
+            marginBottom: '8px',
+          }}
+        >
+          Worldwide Delivery
+        </Typography>
+  
+        <Typography
+          sx={{
+            fontWeight: 500,
+            fontSize: '14px',
+            color: 'rgb(125, 135, 156)',
+            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+            lineHeight: 1.5,
+          }}
+        >
+          We offer competitive prices on our 100 million plus product range. Shop with confidence.
+        </Typography>
+      </Box>
+    </Card>
+  );
+  
+  
 
-export default function ProductCard() {
+export default function Services() {
   const router = useRouter();
   const isMobile = useMediaQuery('(max-width:600px)');
 
@@ -159,21 +158,6 @@ export default function ProductCard() {
           ml: isMobile ? 0 : 0,
         }}
       >
-        <FlashOnIcon sx={{ color: '#f44336', fontSize: isMobile ? 24 : 26, ml: 1 }} />
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 500,
-            fontSize: isMobile ? '25px' : '25px',
-            lineHeight: 1.5,
-            color: '#2b3445',
-            fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-            textAlign: isMobile ? 'left' : 'left',
-            mx: isMobile ? 1 : 1,
-          }}
-        >
-          Flash Deals
-        </Typography>
       </Box>
 
       <Grid

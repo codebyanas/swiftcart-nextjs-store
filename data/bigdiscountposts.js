@@ -3,9 +3,9 @@ const posts = [
       id: 1,
       slug: 'shrimp-chorizo-paella-hi67yyy87hyeiejy7rt8',
       subheader: 'Clothes',
-      title: 'Shrimp and Chorizo Paella',
+      title: 'Shrimp',
       image:
-        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D',
+        'https://i.postimg.cc/RZmJvG2X/7.webp',
       avatar: 'R',
       rating: 4.5,
       price: 99,
@@ -19,7 +19,7 @@ const posts = [
       subheader: 'Clothes',
       title: 'Classic Margherita Pizza',
       image:
-        'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2hvZXN8ZW58MHx8MHx8fDA%3D',
+        'https://i.postimg.cc/GtY9CsQW/9.webp',
       avatar: 'M',
       rating: 4,
       price: 1000,
@@ -31,9 +31,9 @@ const posts = [
       id: 3,
       slug: 'grilled-salmon-asparagus-joi75tehjutgijdrl85',
       subheader: 'Clothes',
-      title: 'Grilled Salmon with Asparagus',
+      title: 'Grilled Salmon',
       image:
-        'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D',
+        'https://i.postimg.cc/7PT57pkK/10.webp',
       avatar: 'S',
       rating: 3.5,
       price: 700,
@@ -47,7 +47,7 @@ const posts = [
       subheader: 'Shoes',
       title: 'Stylish Ultra',
       image:
-        'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dCUyMHNoaXJ0fGVufDB8fDB8fHww',
+        'https://i.postimg.cc/KvP4pB4L/11.webp',
       avatar: 'S',
       rating: 5,
       price: 400,
@@ -55,6 +55,34 @@ const posts = [
       subcategory: 'Smartphones', // Man,women,kids,
       timeStamp: '2023-10-01T12:00:00Z',
     },
+    {
+        id: 5,
+        slug: 'stylish-ultra-jvd9875etjgoir5tujlg8r5',
+        subheader: 'Shoes',
+        title: 'Stylish Ultra',
+        image:
+          'https://i.postimg.cc/KYHY35sX/12.webp',
+        avatar: 'S',
+        rating: 5,
+        price: 400,
+        category: 'Electronics', // Clothes, Shoes, Electronics,
+        subcategory: 'Smartphones', // Man,women,kids,
+        timeStamp: '2023-10-01T12:00:00Z',
+      },
+      {
+        id: 6,
+        slug: 'stylish-ultra-jvd9875etjgoir5tujlg8r5',
+        subheader: 'Shoes',
+        title: 'Stylish Ultra',
+        image:
+          'https://i.postimg.cc/C1nxGfWR/13.webp',
+        avatar: 'S',
+        rating: 5,
+        price: 400,
+        category: 'Electronics', // Clothes, Shoes, Electronics,
+        subcategory: 'Smartphones', // Man,women,kids,
+        timeStamp: '2023-10-01T12:00:00Z',
+      },
   ];
   
   export default posts;

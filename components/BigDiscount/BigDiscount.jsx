@@ -9,7 +9,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
-import posts from '@/data/newarrivalposts';
+import posts from '@/data/bigdiscountposts';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -129,7 +129,7 @@ const DesktopCard = ({ post }) => (
     </Card >
 );
 
-export default function NewArrivalProducts() {
+export default function BigDiscount() {
     const router = useRouter();
     const isMobile = useMediaQuery('(max-width:600px)');
 
@@ -156,7 +156,7 @@ export default function NewArrivalProducts() {
                         mx: isMobile ? 1 : 1,
                     }}
                 >
-                    New Arrivals
+                    Big Discounts
                 </Typography>
             </Box>
 
