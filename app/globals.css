@@ -5,6 +5,8 @@
 *{
   margin: 0;
   padding: 0;
+  pointer-events: auto; /* Ensure it behaves normally for clicks */
+  user-select: none;    /* Prevent accidental selection */
 }
 
 body {

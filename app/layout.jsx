@@ -31,6 +31,9 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
         <link rel="icon" href="https://i.postimg.cc/tgzFSv4L/2-removebg-preview.png" />
       </head>
       <body className={`${publicSans.variable} flex flex-col min-h-screen`}>
