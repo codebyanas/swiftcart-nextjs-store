@@ -15,69 +15,30 @@ import Image from 'next/image';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
-  <Card sx={{ width: 160, height: 250, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-
-    {/* <CardMedia component="img" height="100" image={post.image} alt={post.title}
-      sx={{
-        backgroundColor: '#f5f5f5', // optional to make empty space look intentional
-      }} /> */}
-
-    <Image
-      src={post.image}
-      alt={post.title}
-      width={0}  // This will be overridden by the parent container
-      height={100}
-      style={{
-        width: '100%',
-        objectFit: 'cover',
-        backgroundColor: '#f5f5f5',
-      }}
-      sizes="100vw"
-    />
-
-
-    <Box sx={{ px: 1, pt: 1 }}>
-      <Typography
-        sx={{
-          fontWeight: 400,
-          fontSize: '12px',
-          color: 'rgb(75, 86, 107)',
-          fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-          lineHeight: 1.4,
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-        }}
-      >
-        {post.title}
-      </Typography>
-      <Rating size="small" value={post.rating} precision={0.5} readOnly />
-      <Typography
-        sx={{
-          fontWeight: 500,
-          fontSize: '12px',
-          fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-          lineHeight: 1.4,
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-          margin: '0px',
-          color: 'rgb(210, 63, 87)'
-        }}
-      >
-        ${post.price}
-      </Typography>
-    </Box>
-    <CardActions disableSpacing sx={{ px: 1, pb: 1 }}>
-      <IconButton aria-label="add to favorites"><FavoriteIcon fontSize="small" /></IconButton>
-      <IconButton aria-label="share"><ShareIcon fontSize="small" /></IconButton>
-      <IconButton sx={{ marginLeft: 'auto', color: '#D23F57' }} aria-label="add to cart">
-        <ShoppingCartIcon />
-      </IconButton>
-    </CardActions>
-  </Card>
+  <Card
+  sx={{
+    width: 'auto',
+    height: 170,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  }}
+>
+  <Image
+    src={post.image}
+    alt={post.title}
+    width={0} // This will be overridden by the parent container
+    height={145}
+    sizes="100vw"
+    style={{
+      width: 'calc(100% - 30px)', // Subtract 40px for horizontal margins (20px on each side)
+      margin: '0 auto',          // Center the image horizontally
+      objectFit: 'cover',
+      backgroundColor: '#f5f5f5',
+      borderRadius: '8px',  
+    }}
+  />
+</Card>
 );
 
 const DesktopCard = ({ post }) => (

@@ -54,7 +54,7 @@ const Footer = () => {
           <Grid container spacing={4}>
             <Grid item xs={12} sm={6} md={3} lg={3}>
               <Image
-                src="/store/swiftcart-name.png"
+                src="https://i.postimg.cc/bYBYrdnW/1-1-removebg-preview.png"
                 width={140}
                 height={40}
                 alt="Company logo"

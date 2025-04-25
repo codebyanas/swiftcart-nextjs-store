@@ -2,6 +2,7 @@
 
 import Banner from '@/components/Banner'
 import ProductCard from '@/components/FlashDeals/Card'
+import NewArrivalProducts from '@/components/NewArrivals/NewArrivalProducts'
 import TopCategoriesCard from '@/components/TopCategories/TopCategoriesProducts'
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <Banner />
       <ProductCard />
       <TopCategoriesCard/>
+      <NewArrivalProducts/>
     </>
   )
 }

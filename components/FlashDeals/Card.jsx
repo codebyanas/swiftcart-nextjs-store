@@ -17,11 +17,6 @@ import Image from 'next/image';
 const MobileCard = ({ post }) => (
   <Card sx={{ width: 160, height: 250, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
 
-    {/* <CardMedia component="img" height="100" image={post.image} alt={post.title}
-      sx={{
-        backgroundColor: '#f5f5f5', // optional to make empty space look intentional
-      }} /> */}
-
     <Image
       src={post.image}
       alt={post.title}
@@ -82,7 +77,7 @@ const MobileCard = ({ post }) => (
 
 // 🔹 Desktop Layout
 const DesktopCard = ({ post }) => (
-  <Card sx={{ width: 320, height: 380, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+  <Card sx={{ width: 320, height: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
     {/* <CardMedia component="img" height="230" image={post.image} alt={post.title}
       sx={{
         backgroundColor: '#f5f5f5', // optional to make empty space look intentional
@@ -91,17 +86,20 @@ const DesktopCard = ({ post }) => (
     <Image
       src={post.image}
       alt={post.title}
-      width={0}  // This will be overridden by the parent container
+      width={0} // This will be overridden by the parent container
       height={230}
       sizes="100vw"
       style={{
-        width: '100%',
+        width: 'calc(100% - 30px)', // Subtract 40px for horizontal margins (20px on each side)
+        margin: '0 auto', 
+        marginTop: '16px',
         objectFit: 'cover',
         backgroundColor: '#f5f5f5',
+        borderRadius: '8px',
       }}
     />
 
-    <Box sx={{ px: 2, pt: 1 }}>
+    <Box sx={{ px: 2, pt: 2, }}>
       <Typography
         sx={{
           fontWeight: 500,
@@ -179,7 +177,7 @@ export default function ProductCard() {
       </Box>
 
       <Grid
-        container justifyContent="space-between"
+        container justifyContent="center"
         spacing={1}
         sx={{
           mx: isMobile ? 1 : 1, // Add margin-left and margin-right (16px mobile, 32px desktop)
