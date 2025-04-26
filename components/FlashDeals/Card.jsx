@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import {
-  Card, CardHeader, CardMedia, CardActions, Box,
-  IconButton, Typography, Grid, useMediaQuery, Rating
+  Card, CardActions, Box,
+  IconButton, Typography, useMediaQuery, Rating
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -12,6 +12,7 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 import posts from '@/data/flashdealsposts';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Grid from '@mui/material/Grid';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
@@ -185,7 +186,7 @@ export default function ProductCard() {
         }}
       >
         {posts.map((post) => (
-          <Grid item xs={6} sm={6} md={3} key={post.id}
+          <Grid size={{xs:6, sm:6, md:3}} key={post.id}
             className="p-4 bg-white border rounded-lg shadow-md cursor-pointer"
             onClick={() => router.push(`/product/${post.slug}`)}>
             {isMobile ? (

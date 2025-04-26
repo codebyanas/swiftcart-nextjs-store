@@ -1,10 +1,13 @@
 'use client'
 
 import React from "react";
-import { Box, Container, Grid, Typography, IconButton, TextField, Button, Divider } from "@mui/material";
+import { Box, Container, Typography, IconButton, TextField, Button, Divider } from "@mui/material";
 import { styled } from "@mui/system";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import Image from 'next/image'
+import Grid from '@mui/material/Grid';
+ 
+
 
 const StyledFooter = styled(Box)({
   background: "linear-gradient(45deg, #222935 30%, #222935 90%)", // Dark background as in screenshot
@@ -52,7 +55,7 @@ const Footer = () => {
 
         >
           <Grid container spacing={4}>
-            <Grid item xs={12} sm={6} md={3} lg={3}>
+          <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
               <Image
                 src="https://i.postimg.cc/bYBYrdnW/1-1-removebg-preview.png"
                 width={140}
@@ -69,7 +72,7 @@ const Footer = () => {
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={3} lg={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
               <Typography variant="h6" gutterBottom fontWeight="regular" sx={{ color: "#e0e0e0" }}>
                 Quick Links
               </Typography>
@@ -85,7 +88,7 @@ const Footer = () => {
               ))}
             </Grid>
 
-            <Grid item xs={12} sm={6} md={3} lg={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
               <Typography variant="h6" gutterBottom fontWeight="regular" sx={{ color: "#e0e0e0" }}>
                 Contact Us
               </Typography>
@@ -98,7 +101,7 @@ const Footer = () => {
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={3} lg={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3, lg: 3 }}>
               <Typography variant="h6" gutterBottom fontWeight="regular" sx={{ color: "#e0e0e0" }}>
                 Newsletter
               </Typography>

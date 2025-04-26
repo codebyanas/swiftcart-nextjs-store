@@ -2,10 +2,12 @@
 
 import * as React from 'react';
 import {
-    Card, Box, Typography, Grid, useMediaQuery,
+    Card, Box, Typography, useMediaQuery,
 } from '@mui/material';
 import posts from '@/data/servicesposts';
 import { useRouter } from 'next/navigation';
+import Grid from '@mui/material/Grid';
+ 
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
@@ -168,7 +170,7 @@ export default function Services() {
                 }}
             >
                 {posts.map((post) => (
-                    <Grid item xs={6} sm={6} md={3} key={post.id}
+                    <Grid size={{xs:6, sm:6, md:3}} key={post.id}
                         className="p-4 bg-white border rounded-lg shadow-md cursor-pointer"
                         onClick={() => router.push(`/product/${post.slug}`)}>
                         {isMobile ? (

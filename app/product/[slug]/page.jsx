@@ -10,9 +10,9 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
-  Grid,
-  IconButton,
 } from '@mui/material';
+import Grid from '@mui/material/Grid';
+
 import { Star, Favorite, ExpandMore } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -99,7 +99,7 @@ const ProductDetail = ({ params: { slug } }) => {
       <Container sx={{ px: { xs: 2, sm: 5 }, py: 8, width: '100%' }}>
         <Grid container spacing={4} alignItems="center">
           {/* Top - Image */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Image
               src={product.image}
               alt={`${product.title} product image`}
@@ -117,9 +117,7 @@ const ProductDetail = ({ params: { slug } }) => {
 
           {/* Bottom - Content */}
           <Grid
-            item
-            xs={12}
-            md={6}
+            size={{ xs: 12, md: 6 }}
             sx={{
               marginLeft: {
                 xs: 0,      // No margin on mobile (0px)
@@ -215,15 +213,15 @@ const ProductDetail = ({ params: { slug } }) => {
               </Box>
 
               <Box sx={{ display: 'flex', alignItems: 'center', mt: '10px', flexWrap: 'wrap', gap: 2 }}>
-                <Typography variant="h5" component="span" 
-                sx={{ 
-                  margin: '0 0 4px',         // equivalent to margin: 0px 0px 4px
-                  fontSize: '25px',          // font-size: 25px
-                  fontWeight: 500,           // font-weight: 600
-                  fontFamily: '"Public Sans", "Public Sans Fallback"', // font-family
-                  color: 'rgb(210, 63, 87)', // color: rgb(210, 63, 87)
-                  lineHeight: 1,              // line-height: 1
-                 }}>
+                <Typography variant="h5" component="span"
+                  sx={{
+                    margin: '0 0 4px',         // equivalent to margin: 0px 0px 4px
+                    fontSize: '25px',          // font-size: 25px
+                    fontWeight: 500,           // font-weight: 600
+                    fontFamily: '"Public Sans", "Public Sans Fallback"', // font-family
+                    color: 'rgb(210, 63, 87)', // color: rgb(210, 63, 87)
+                    lineHeight: 1,              // line-height: 1
+                  }}>
                   ${product.price}
                 </Typography>
                 <Button variant="contained" sx={{ py: 1, px: 3, ml: 'auto', background: '#D23F57', fontFamily: '"Public Sans", "Public Sans Fallback"', borderRadius: '6px' }}>

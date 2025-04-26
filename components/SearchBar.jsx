@@ -7,7 +7,9 @@ import { FiSearch } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
 
 // 🔹 Styled Components
-const SearchContainer = styled(Box)(({ theme, isActive }) => ({
+const SearchContainer = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'isActive',
+})(({ theme, isActive }) => ({
   position: isActive ? 'fixed' : 'relative',
   top: isActive ? 0 : 'auto',
   left: isActive ? 0 : 'auto',
@@ -17,7 +19,7 @@ const SearchContainer = styled(Box)(({ theme, isActive }) => ({
   borderRadius: isActive ? 0 : '24px',
   margin: isActive ? 0 : theme.spacing(0, 2),
   padding: isActive ? theme.spacing(1) : 0,
-  width: isActive ? '100%' : '100%',
+  width: '100%',
   maxWidth: isActive ? 'none' : '600px',
   height: isActive ? '56px' : 'auto',
   display: 'flex',
@@ -25,6 +27,7 @@ const SearchContainer = styled(Box)(({ theme, isActive }) => ({
   boxShadow: isActive ? theme.shadows[1] : 'none',
   transition: 'all 0.3s ease',
 }));
+
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   flex: 1,

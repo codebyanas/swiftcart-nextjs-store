@@ -2,16 +2,13 @@
 
 import * as React from 'react';
 import {
-    Card, CardHeader, CardMedia, CardActions, Box,
-    IconButton, Typography, Grid, useMediaQuery, Rating
+    Card, Box, Typography, useMediaQuery
 } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FlashOnIcon from '@mui/icons-material/FlashOn';
 import posts from '@/data/newarrivalposts';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Grid from '@mui/material/Grid';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
@@ -169,7 +166,7 @@ export default function NewArrivalProducts() {
                 }}
             >
                 {posts.map((post) => (
-                    <Grid item xs={6} sm={6} md={3} key={post.id}
+                    <Grid size={{ xs: 6, sm: 6, md: 3 }} key={post.id}
                         className="p-4 bg-white border rounded-lg shadow-md cursor-pointer"
                         onClick={() => router.push(`/product/${post.slug}`)}>
                         {isMobile ? (

@@ -3,7 +3,7 @@
 import React from 'react';
 import {
   Card, CardMedia, CardActions, Box,
-  IconButton, Typography, Grid, useMediaQuery, Rating
+  IconButton, Typography, useMediaQuery, Rating
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import { redirect } from 'next/navigation';
 import ManageSearchOutlinedIcon from '@mui/icons-material/ManageSearchOutlined';
 import posts from '@/data/flashdealsposts';
+import Grid from '@mui/material/Grid';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
@@ -168,7 +169,7 @@ export default function SearchPage({ searchParams }) {
         }}
       >
         {filteredPosts.map(post => (
-          <Grid item xs={6} sm={6} md={3} key={post.id}
+          <Grid size={{ xs: 6, sm: 6, md: 3 }} key={post.id}
             className="p-4 bg-white border rounded-lg shadow-md cursor-pointer"
             onClick={() => router.push(`/product/${post.slug}`)}>
             {isMobile ? (
