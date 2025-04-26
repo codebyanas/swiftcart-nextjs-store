@@ -13,58 +13,58 @@ import Grid from '@mui/material/Grid';
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
   <Card
-  sx={{
-    width: 'auto',
-    height: 170,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  }}
->
-  <Image
-    src={post.image}
-    alt={post.title}
-    width={0} // This will be overridden by the parent container
-    height={145}
-    sizes="100vw"
-    style={{
-      width: 'calc(100% - 30px)', // Subtract 40px for horizontal margins (20px on each side)
-      margin: '0 auto',          // Center the image horizontally
-      objectFit: 'cover',
-      backgroundColor: '#f5f5f5',
-      borderRadius: '8px',  
+    sx={{
+      width: 'auto',
+      height: 170,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
     }}
-  />
-</Card>
+  >
+    <Image
+      src={post.image}
+      alt={post.title}
+      width={0} // This will be overridden by the parent container
+      height={145}
+      sizes="100vw"
+      style={{
+        width: 'calc(100% - 30px)', // Subtract 40px for horizontal margins (20px on each side)
+        margin: '0 auto',          // Center the image horizontally
+        objectFit: 'cover',
+        backgroundColor: '#f5f5f5',
+        borderRadius: '8px',
+      }}
+    />
+  </Card>
 );
 
 const DesktopCard = ({ post }) => (
-    <Card
-      sx={{
-        width: 430,
-        height: 170,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
+  <Card
+    sx={{
+      width: 430,
+      height: 170,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    }}
+  >
+    <Image
+      src={post.image}
+      alt={post.title}
+      width={0} // This will be overridden by the parent container
+      height={145}
+      sizes="100vw"
+      style={{
+        width: 'calc(100% - 30px)', // Subtract 40px for horizontal margins (20px on each side)
+        margin: '0 auto',          // Center the image horizontally
+        objectFit: 'cover',
+        backgroundColor: '#f5f5f5',
+        borderRadius: '8px',
       }}
-    >
-      <Image
-        src={post.image}
-        alt={post.title}
-        width={0} // This will be overridden by the parent container
-        height={145}
-        sizes="100vw"
-        style={{
-          width: 'calc(100% - 30px)', // Subtract 40px for horizontal margins (20px on each side)
-          margin: '0 auto',          // Center the image horizontally
-          objectFit: 'cover',
-          backgroundColor: '#f5f5f5',
-          borderRadius: '8px',  
-        }}
-      />
-    </Card>
-  );
-  
+    />
+  </Card>
+);
+
 
 export default function TopCategoriesCard() {
   const router = useRouter();
@@ -106,7 +106,7 @@ export default function TopCategoriesCard() {
         }}
       >
         {posts.map((post) => (
-          <Grid size={{xs:6, sm:6, md:3}} key={post.id}
+          <Grid size={{ xs: 12, sm: 8, md: 4 }} key={post.id}
             className="p-4 bg-white border rounded-lg shadow-md cursor-pointer"
             onClick={() => router.push(`/product/${post.slug}`)}>
             {isMobile ? (

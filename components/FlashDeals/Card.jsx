@@ -16,29 +16,36 @@ import Grid from '@mui/material/Grid';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
-  <Card sx={{ width: 160, height: 250, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-
+  <Card sx={{ 
+    width: '100%', 
+    maxWidth: 180, 
+    height: 260, 
+    display: 'flex', 
+    flexDirection: 'column', 
+    justifyContent: 'space-between',
+    mx: 'auto' // Center card within its grid item
+  }}>
     <Image
       src={post.image}
       alt={post.title}
-      width={0}  // This will be overridden by the parent container
-      height={100}
+      width={180}
+      height={120}
       style={{
         width: '100%',
+        height: 120,
         objectFit: 'cover',
         backgroundColor: '#f5f5f5',
+        borderRadius: '8px 8px 0 0',
       }}
-      sizes="100vw"
+      sizes="(max-width: 600px) 50vw, 25vw"
     />
-
-
-    <Box sx={{ px: 1, pt: 1 }}>
+    <Box sx={{ px: 1, pt: 1, flexGrow: 1 }}>
       <Typography
         sx={{
           fontWeight: 400,
           fontSize: '12px',
           color: 'rgb(75, 86, 107)',
-          fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+          fontFamily: '"Public Sans", sans-serif',
           lineHeight: 1.4,
           display: '-webkit-box',
           WebkitLineClamp: 2,
@@ -53,14 +60,10 @@ const MobileCard = ({ post }) => (
         sx={{
           fontWeight: 500,
           fontSize: '12px',
-          fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
+          fontFamily: '"Public Sans", sans-serif',
           lineHeight: 1.4,
-          display: '-webkit-box',
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-          margin: '0px',
-          color: 'rgb(210, 63, 87)'
+          color: 'rgb(210, 63, 87)',
+          mt: 0.5,
         }}
       >
         ${post.price}
@@ -70,7 +73,7 @@ const MobileCard = ({ post }) => (
       <IconButton aria-label="add to favorites"><FavoriteIcon fontSize="small" /></IconButton>
       <IconButton aria-label="share"><ShareIcon fontSize="small" /></IconButton>
       <IconButton sx={{ marginLeft: 'auto', color: '#D23F57' }} aria-label="add to cart">
-        <ShoppingCartIcon />
+        <ShoppingCartIcon fontSize="small" />
       </IconButton>
     </CardActions>
   </Card>

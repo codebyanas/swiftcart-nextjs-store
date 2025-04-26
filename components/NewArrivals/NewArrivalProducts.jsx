@@ -12,56 +12,60 @@ import Grid from '@mui/material/Grid';
 
 // 🔹 Mobile Layout
 const MobileCard = ({ post }) => (
-    <Card sx={{ width: 160, height: 150, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <Image
-            src={post.image}
-            alt={post.title}
-            width={0}  // This will be overridden by the parent container
-            height={100}
-            style={{
-                width: '100%',
-                objectFit: 'cover',
-                backgroundColor: '#f5f5f5',
-            }}
-            sizes="100vw"
-        />
-
-
-        <Box sx={{ px: 1, pt: 1, pb: 1 }}>
-            <Typography
-                sx={{
-                    fontWeight: 400,
-                    fontSize: '12px',
-                    color: 'rgb(75, 86, 107)',
-                    fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-                    lineHeight: 1.4,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                }}
-            >
-                {post.title}
-            </Typography>
-            <Typography
-                sx={{
-                    fontWeight: 500,
-                    fontSize: '12px',
-                    fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
-                    lineHeight: 1.4,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    margin: '0px',
-                    color: 'rgb(210, 63, 87)'
-                }}
-            >
-                ${post.price}
-            </Typography>
-        </Box>
+    <Card sx={{ 
+      width: '100%', 
+      maxWidth: 180, 
+      height: 210, 
+      display: 'flex', 
+      flexDirection: 'column', 
+      justifyContent: 'space-between',
+      mx: 'auto' // Center card within its grid item
+    }}>
+      <Image
+        src={post.image}
+        alt={post.title}
+        width={180}
+        height={120}
+        style={{
+          width: '100%',
+          height: '75%', // Responsive height relative to card
+          objectFit: 'cover',
+          backgroundColor: '#f5f5f5',
+          borderRadius: '8px 8px 0 0',
+        }}
+        sizes="(max-width: 600px) 50vw, 25vw"
+      />
+      <Box sx={{ px: 1, pt: 1, pb: 1, flexGrow: 1 }}>
+        <Typography
+          sx={{
+            fontWeight: 400,
+            fontSize: '12px',
+            color: 'rgb(75, 86, 107)',
+            fontFamily: '"Public Sans", sans-serif',
+            lineHeight: 1.4,
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
+          {post.title}
+        </Typography>
+        <Typography
+          sx={{
+            fontWeight: 500,
+            fontSize: '12px',
+            fontFamily: '"Public Sans", sans-serif',
+            lineHeight: 1.4,
+            color: 'rgb(210, 63, 87)',
+            mt: 0.5,
+          }}
+        >
+          ${post.price}
+        </Typography>
+      </Box>
     </Card>
-);
+  );
 
 // 🔹 Desktop Layout
 const DesktopCard = ({ post }) => (
@@ -166,7 +170,7 @@ export default function NewArrivalProducts() {
                 }}
             >
                 {posts.map((post) => (
-                    <Grid size={{ xs: 6, sm: 6, md: 3 }} key={post.id}
+                    <Grid size={{ xs: 6, sm: 6, md: 2 }} key={post.id}
                         className="p-4 bg-white border rounded-lg shadow-md cursor-pointer"
                         onClick={() => router.push(`/product/${post.slug}`)}>
                         {isMobile ? (
